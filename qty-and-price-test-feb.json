@@ -1,0 +1,29 @@
+[
+  {
+    "profile": "price-and-qty-tracking-numbers-googlesheets-reader",
+    "enabled": true,
+    "interval": 300,
+    "config": {
+      "file": "1UlzCQP9p34aX5TPNfRKa7K1M2BqZiHMvuOOHaHT50kE",
+      "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
+      "range": "February 2022!I:J",
+      "collection": "test-february"
+    },
+    "load": "qty-and-price/qty-and-price-googlesheets-reader"
+  }, {
+    "profile": "price-and-qty-tracking-numbers-googlesheets-updater",
+    "enabled": true,
+    "interval": 2,
+    "config": {
+      "file": "1UlzCQP9p34aX5TPNfRKa7K1M2BqZiHMvuOOHaHT50kE",
+      "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
+      "rangeForQtyAndLastScan": "February 2022!F:G",
+      "rangeForPrice": "February 2022!M:M",
+      "collection": "test-february",
+      "sourceCollection": "test",
+      "lastUpdatedSecs": 300
+    },
+    "load": "qty-and-price/qty-and-price-googlesheets-updater"
+  }
+
+]

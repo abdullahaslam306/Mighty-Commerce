@@ -1,0 +1,39 @@
+{
+  "name": "mightycommerce",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "repricer": "nodemon . profiles-repricer-test repricer-api",
+    "repricer-hub-get-listing": "nodemon . profiles-repricer-hub-test repricerhub-getlisting",
+    "repricer-hub-get-listing-all": "nodemon . profiles-repricer-hub-test-all",
+    "tracking": "nodemon . profiles-tracking-test-feb",
+    "qty-and-price-reader": "nodemon . qty-and-price-test-feb price-and-qty-tracking-numbers-googlesheets-reader",
+    "qty-and-price-updater": "nodemon . qty-and-price-test-feb price-and-qty-tracking-numbers-googlesheets-updater",
+    "qty-and-price-updater-prod": "nodemon . qty-and-price-prod-feb price-and-qty-tracking-numbers-googlesheets-updater",
+    "production-tracking": "nodemon . profiles-tracking-test-feb tracking-numbers-googlesheets-reader 18.219.106.190"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "amazon-sp-api": "^0.6.5",
+    "axios": "^0.24.0",
+    "cheerio": "^1.0.0-rc.10",
+    "cors": "^2.8.5",
+    "csv-parser": "^3.0.0",
+    "csv-writer": "^1.6.0",
+    "dotenv": "^15.0.1",
+    "express": "^4.17.2",
+    "ftp-srv": "^4.5.0",
+    "googleapis": "^91.0.0",
+    "luxon": "^2.3.0",
+    "mongoose": "^6.1.2",
+    "object-hash": "^2.2.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "valid-url": "^1.0.9"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

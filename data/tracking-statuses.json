@@ -1,0 +1,9 @@
+{
+    "0":    "Not found",
+    "10":	"In transit",
+    "20":	"Expired",
+    "30":	"Pick up",
+    "35":	"Undelivered",
+    "40":	"Delivered",
+    "50":	"Alert"
+}

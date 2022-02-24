@@ -1,0 +1,51 @@
+[
+  {
+    "policy": "prod",
+    "profile": "tracking-numbers-googlesheets-reader",
+    "enabled": true,
+    "interval": 7200,
+    "config": {
+      "file": "1YY89FMg9zXiNGYvQekLNVhI-0HQB0ePOZjRvu2mlpaE",
+      "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
+      "range": "January 2022!Y:Z",
+      "rangeForStatus": "January 2022!J:J",
+      "collection": "prod-january"
+    },
+    "load": "track17/tracking-googlesheets-reader"
+  },
+  {
+    "policy": "prod",
+    "profile": "trackingnumbers-googlesheets-updater",
+    "enabled": true,
+    "interval": 5,
+    "config": {
+      "file": "1YY89FMg9zXiNGYvQekLNVhI-0HQB0ePOZjRvu2mlpaE",
+      "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
+      "range": "January 2022!AE:AH",
+      "collection": "prod-january"
+    },
+    "load": "track17/tracking-googlesheets-updater"
+  },
+  {
+    "policy": "prod",
+    "profile": "trackingnumbers-registration",
+    "enabled": true,
+    "interval": 10800,
+    "config": {
+      "token": "69268B5C19D59286103F1F04E9761B58",
+      "collection": "prod-january"
+    },
+    "load": "track17/tracking-registration"
+  },
+  {
+    "policy": "prod",
+    "profile": "trackingnumbers-status",
+    "enabled": true,
+    "interval": 28800,
+    "config": {
+      "token": "69268B5C19D59286103F1F04E9761B58",
+      "collection": "prod-january"
+    },
+    "load": "track17/tracking-status"
+  }
+]

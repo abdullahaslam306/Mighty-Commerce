@@ -1,0 +1,338 @@
+[
+  {
+    "policy": "test",
+    "profile": "amazon-orders",
+    "enabled": true,
+    "interval": 20,
+    "config": {
+      "collection": "test"
+    },
+    "load": "amazon/amazon-orders"
+  },
+
+  {
+    "policy": "test-repricer",
+    "profile": "repricer-api",
+    "enabled": true,
+    "interval": 30,
+    "oneTime": true,
+    "config": {
+      "userName": "oriyashragaelgali@gmail.com",
+      "password": "Ori9RnV5fAzCRf!",
+      "dir": "temp",
+      "testFileNameInput": "20220130-1707-repricer-input.csv",
+      "useFileNameInput": false,
+      "fileNameInput": "repricer-input.csv",
+      "fileNameOutput": "repricer-output.csv",
+      "collection": "test"
+    },
+    "load": "repricer/repricer-api"
+  },
+
+  {
+    "policy": "test-repricer",
+    "profile": "asin-source-reader",
+    "enabled": false,
+    "oneTime": false,
+    "interval": 60,
+    "config": {
+      "file": "1O2b-P4z3OBP8AxETgmoP7fFNhqqw1jiUPeY07Pfc42c",
+      "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
+      "range": "MASTER TAB!B:D",
+      "collection": "test"
+      },
+    "load": "repricer/asin-source-reader"
+  },
+
+  {
+    "policy": "test-repricer",
+    "profile": "repricer-scan",
+    "enabled": true,
+    "interval": 2,
+    "config": {
+      "collection": "test",
+      "lastScanSecs": 10,
+      "lastSeenHours": 10
+    },
+    "load": "repricer/repricer-scan"
+  },
+
+  {
+  "policy": "test",
+  "profile": "trackingnumbers-googlesheets-reader",
+  "enabled": true,
+  "interval": 20,
+  "config": {
+    "file": "1ltkjwqPvMS5-AX6Mi8GWGP1nj0IXyuuz4Jq7z5hOjFY",
+    "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
+    "range": "debug-sheet!Y:Z",
+    "rangeForStatus": "debug-sheet!J:J",
+    "collection": "test"
+  },
+  "load": "track17/tracking-googlesheets-reader"
+},
+
+{
+  "policy": "test",
+  "profile": "trackingnumbers-registration",
+  "enabled": true,
+  "interval": 20,
+  "config": {
+    "token": "69268B5C19D59286103F1F04E9761B58",
+    "collection": "test"
+  },
+  "load": "track17/tracking-registration"
+},
+
+{
+  "policy": "test",
+  "profile": "trackingnumbers-status",
+  "enabled": true,
+  "interval": 20,
+  "config": {
+    "token": "69268B5C19D59286103F1F04E9761B58",
+    "collection": "test"
+  },
+  "load": "track17/tracking-status"
+},
+
+{
+  "policy": "test",
+  "profile": "trackingnumbers-googlesheets-updater",
+  "enabled": true,
+  "interval": 20,
+  "config": {
+    "file": "1ltkjwqPvMS5-AX6Mi8GWGP1nj0IXyuuz4Jq7z5hOjFY",
+    "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
+    "range": "debug-sheet!M:P",
+    "collection": "test"
+  },
+  "load": "track17/tracking-googlesheets-updater"
+},
+
+{
+  "policy": "test",
+  "profile": "tracking-numbers-googlesheets-reader",
+  "enabled": true,
+  "interval": 20,
+  "config": {
+    "file": "1ltkjwqPvMS5-AX6Mi8GWGP1nj0IXyuuz4Jq7z5hOjFY",
+    "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
+    "range": "debug-sheet!Y:Z",
+    "rangeForStatus": "debug-sheet!J:J",
+    "collection": "test"
+  },
+  "load": "track17/tracking-googlesheets-reader"
+},
+
+{
+  "policy": "prod",
+  "profile": "tracking-numbers-googlesheets-reader",
+  "enabled": true,
+  "interval": 7200,
+  "config": {
+    "file": "19o4JSHQzAh2fkWsNIY8snXC4_yCfl_kiJtMn76SbfSU",
+    "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
+    "range": "December 2021!Y:Z",
+    "rangeForStatus": "December 2021!J:J",
+    "collection": "prod-december"
+  },
+  "load": "track17/tracking-googlesheets-reader"
+},
+
+{
+  "policy": "prod",
+  "profile": "trackingnumbers-googlesheets-updater",
+  "enabled": true,
+  "interval": 5,
+  "config": {
+    "file": "19o4JSHQzAh2fkWsNIY8snXC4_yCfl_kiJtMn76SbfSU",
+    "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
+    "range": "December 2021!AE:AH",
+    "collection": "prod-december"
+  },
+  "load": "track17/tracking-googlesheets-updater"
+},
+
+{
+  "policy": "prod",
+  "profile": "trackingnumbers-registration",
+  "enabled": true,
+  "interval": 10800,
+  "config": {
+    "token": "69268B5C19D59286103F1F04E9761B58",
+    "collection": "prod-december"
+  },
+  "load": "track17/tracking-registration"
+},
+
+{
+  "policy": "prod",
+  "profile": "trackingnumbers-status",
+  "enabled": true,
+  "interval": 28800,
+  "config": {
+    "token": "69268B5C19D59286103F1F04E9761B58",
+    "collection": "prod-december"
+  },
+  "load": "track17/tracking-status"
+},
+
+
+
+
+
+{
+  "policy": "prod-jan",
+  "profile": "tracking-numbers-googlesheets-reader",
+  "enabled": true,
+  "interval": 7200,
+  "config": {
+    "file": "1YY89FMg9zXiNGYvQekLNVhI-0HQB0ePOZjRvu2mlpaE",
+    "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
+    "range": "January 2022!Y:Z",
+    "rangeForStatus": "January 2022!J:J",
+    "collection": "prod-january"
+  },
+  "load": "track17/tracking-googlesheets-reader"
+},
+
+{
+  "policy": "prod-jan",
+  "profile": "trackingnumbers-googlesheets-updater",
+  "enabled": true,
+  "interval": 5,
+  "config": {
+    "file": "1YY89FMg9zXiNGYvQekLNVhI-0HQB0ePOZjRvu2mlpaE",
+    "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
+    "range": "January 2022!AE:AH",
+    "collection": "prod-january"
+  },
+  "load": "track17/tracking-googlesheets-updater"
+},
+
+{
+  "policy": "prod-jan",
+  "profile": "trackingnumbers-registration",
+  "enabled": true,
+  "interval": 10800,
+  "config": {
+    "token": "69268B5C19D59286103F1F04E9761B58",
+    "collection": "prod-january"
+  },
+  "load": "track17/tracking-registration"
+},
+
+{
+  "policy": "prod-jan",
+  "profile": "trackingnumbers-status",
+  "enabled": true,
+  "interval": 28800,
+  "config": {
+    "token": "69268B5C19D59286103F1F04E9761B58",
+    "collection": "prod-january"
+  },
+  "load": "track17/tracking-status"
+},
+
+
+
+
+{
+  "policy": "dev-jan",
+  "profile": "tracking-numbers-googlesheets-reader",
+  "enabled": true,
+  "interval": 60,
+  "config": {
+    "file": "1YY89FMg9zXiNGYvQekLNVhI-0HQB0ePOZjRvu2mlpaE",
+    "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
+    "range": "January 2022!Y:Z",
+    "rangeForStatus": "January 2022!J:J",
+    "collection": "dev-january"
+  },
+  "load": "track17/tracking-googlesheets-reader"
+},
+
+{
+  "policy": "dev-jan",
+  "profile": "trackingnumbers-googlesheets-updater",
+  "enabled": true,
+  "interval": 5,
+  "config": {
+    "file": "1YY89FMg9zXiNGYvQekLNVhI-0HQB0ePOZjRvu2mlpaE",
+    "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
+    "range": "January 2022!AE:AH",
+    "collection": "dev-january"
+  },
+  "load": "track17/tracking-googlesheets-updater"
+},
+
+{
+  "policy": "dev-jan",
+  "profile": "trackingnumbers-registration",
+  "enabled": true,
+  "interval": 60,
+  "config": {
+    "token": "69268B5C19D59286103F1F04E9761B58",
+    "collection": "dev-january"
+  },
+  "load": "track17/tracking-registration"
+},
+
+{
+  "policy": "dev-jan",
+  "profile": "trackingnumbers-status",
+  "enabled": true,
+  "interval": 60,
+  "config": {
+    "token": "69268B5C19D59286103F1F04E9761B58",
+    "collection": "dev-january"
+  },
+  "load": "track17/tracking-status"
+},
+
+{
+  "policy": "prod",
+  "profile": "repricer-api",
+  "enabled": true,
+  "interval": 720,
+  "config": {
+    "userName": "oriyashragaelgali@gmail.com",
+    "password": "Ori9RnV5fAzCRf!",
+    "dir": "temp",
+    "fileNameInput": "repricer-input.csv",
+    "fileNameOutput": "repricer-output.csv",
+    "collection": "prod"
+  },
+  "load": "repricer/repricer-api"
+},
+
+{
+  "policy": "prod",
+  "profile": "asin-source-reader",
+  "enabled": true,
+  "interval": 21600,
+  "config": {
+    "file": "1O2b-P4z3OBP8AxETgmoP7fFNhqqw1jiUPeY07Pfc42c",
+    "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
+    "range": "MASTER TAB!B:D",
+    "collection": "prod"
+    },
+  "load": "repricer/asin-source-reader"
+},
+
+{
+  "policy": "prod",
+  "profile": "repricer-scan",
+  "enabled": true,
+  "interval": 2,
+  "config": {
+    "collection": "prod",
+    "lastScanSecs": 30,
+    "lastSeenHours": 1
+  },
+  "load": "repricer/repricer-scan"
+}
+
+
+]

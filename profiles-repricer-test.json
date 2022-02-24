@@ -1,0 +1,48 @@
+[
+  {
+    "policy": "test-repricer",
+    "profile": "repricer-api",
+    "enabled": true,
+    "oneTime": true,
+    "interval": 30,
+    "config": {
+      "userName": "oriyashragaelgali@gmail.com",
+      "password": "Ori9RnV5fAzCRf!",
+      "dir": "temp",
+      "testFileNameInput": "20220206-1859-repricer-input.csv",
+      "useFileNameInput": true,
+      "fileNameInput": "repricer-input.csv",
+      "fileNameOutput": "repricer-output.csv",
+      "collection": "test"
+    },
+    "load": "repricer/repricer-api"
+  },
+
+  {
+    "policy": "test-repricer",
+    "profile": "asin-source-reader",
+    "enabled": true,
+    "oneTime": true,
+    "interval": 60,
+    "config": {
+      "file": "1O2b-P4z3OBP8AxETgmoP7fFNhqqw1jiUPeY07Pfc42c",
+      "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
+      "range": "MASTER TAB!B:D",
+      "collection": "test"
+      },
+    "load": "repricer/asin-source-reader"
+  },
+
+  {
+    "policy": "test-repricer",
+    "profile": "repricer-scan",
+    "enabled": true,
+    "interval": 0,
+    "config": {
+      "collection": "prod",
+      "lastScanSecs": 100,
+      "lastSeenHours": 10
+    },
+    "load": "repricer/repricer-scan"
+  }
+]

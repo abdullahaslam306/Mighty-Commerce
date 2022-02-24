@@ -1,0 +1,132 @@
+[
+  {
+    "profile" : "repricerhub-getlisting Guy Shiffer",
+    "enabled" : true,
+    "interval" : 300,
+    "config" : {
+        "apiKey" : "93dc167a-b5a7-408c-a5d6-75443ec8ab75",
+        "collection" : "prod"
+    },
+    "load" : "repricer-hub/repricer-hub-getlisting"
+},
+
+{
+    "profile" : "repricerhub-getlisting Yuval Bryt",
+    "enabled" : true,
+    "interval" : 300,
+    "config" : {
+        "apiKey" : "92c30d6b-e963-4971-875a-28906de41a49",
+        "collection" : "prod"
+    },
+    "load" : "repricer-hub/repricer-hub-getlisting"
+},
+
+{
+    "profile" : "repricerhub-getlisting Milka Biton",
+    "enabled" : true,
+    "interval" : 300,
+    "config" : {
+        "apiKey" : "61711dc0-57ad-4cdd-b630-f77188c655a5",
+        "collection" : "prod"
+    },
+    "load" : "repricer-hub/repricer-hub-getlisting"
+},
+
+{
+    "profile" : "repricerhub-getlisting Moshe Jakob Wolf",
+    "enabled" : true,
+    "interval" : 300,
+    "config" : {
+        "apiKey" : "75831393-7247-4e37-917c-e0db58b7e83f",
+        "collection" : "prod"
+    },
+    "load" : "repricer-hub/repricer-hub-getlisting"
+},
+
+{
+    "profile" : "repricerhub-getlisting Roee Yair",
+    "enabled" : true,
+    "interval" : 300,
+    "config" : {
+        "apiKey" : "993d6569-d147-4414-a8c2-60754cdcf133",
+        "collection" : "prod"
+    },
+    "load" : "repricer-hub/repricer-hub-getlisting"
+},
+
+{
+    "profile" : "repricerhub-getlisting Shaked Ostrovsky",
+    "enabled" : true,
+    "interval" : 300,
+    "config" : {
+        "apiKey" : "7bb3d3a7-a77f-4e59-a637-673ee180da82",
+        "collection" : "prod"
+    },
+    "load" : "repricer-hub/repricer-hub-getlisting"
+},
+
+{
+    "profile" : "repricerhub-getlisting Idan Beniri",
+    "enabled" : true,
+    "interval" : 300,
+    "config" : {
+        "apiKey" : "53c5d11b-8614-42cc-8d66-2a519d129887",
+        "collection" : "prod"
+    },
+    "load" : "repricer-hub/repricer-hub-getlisting"
+},
+
+{
+    "profile" : "repricerhub-getlisting Ali Abu Ramila",
+    "enabled" : true,
+    "interval" : 300,
+    "config" : {
+        "apiKey" : "40cc6ba7-accf-4a8a-a340-6226abd66cf5",
+        "collection" : "prod"
+    },
+    "load" : "repricer-hub/repricer-hub-getlisting"
+},
+
+{
+    "profile" : "repricerhub-getlisting Michal Peled",
+    "enabled" : true,
+    "interval" : 300,
+    "config" : {
+        "apiKey" : "40782d6a-c807-4d7a-a65d-bc3828a7e588",
+        "collection" : "prod"
+    },
+    "load" : "repricer-hub/repricer-hub-getlisting"
+},
+
+{
+    "profile" : "repricerhub-getlisting Daniel Elbaz",
+    "enabled" : true,
+    "interval" : 300,
+    "config" : {
+        "apiKey" : "7ddca364-e078-4acf-8f32-d705c8616501",
+        "collection" : "prod"
+    },
+    "load" : "repricer-hub/repricer-hub-getlisting"
+},
+
+{
+    "profile" : "repricerhub-getlisting Sergio Daniel Ostrovsky",
+    "enabled" : true,
+    "interval" : 300,
+    "config" : {
+        "apiKey" : "3d84da69-9388-4070-ab94-685f1ae7c6f2",
+        "collection" : "prod"
+    },
+    "load" : "repricer-hub/repricer-hub-getlisting"
+},
+
+{
+    "profile" : "repricerhub-getlisting Adi Yaish",
+    "enabled" : true,
+    "interval" : 300,
+    "config" : {
+        "apiKey" : "2c472014-dd2c-43a4-bb2e-836e033bc096",
+        "collection" : "prod"
+    },
+    "load" : "repricer-hub/repricer-hub-getlisting"
+}]

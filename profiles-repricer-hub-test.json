@@ -1,0 +1,12 @@
+[
+  {
+    "profile": "repricerhub-getlisting",
+    "enabled": true,
+    "interval": 300,
+    "config": {
+      "apiKey": "93dc167a-b5a7-408c-a5d6-75443ec8ab75",
+      "collection": "test"
+    },
+    "load": "repricer-hub/repricer-hub-getlisting"
+  }
+]
