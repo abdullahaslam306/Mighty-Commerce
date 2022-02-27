@@ -81,33 +81,4 @@ module.exports = class GoogleSheets {
       return false;
     }
   }
-
-
-  // async update(range, index, values, desc) {
-  //   await log(this, `${canUpdate ? '' : 'bypassed'} update: ${range} ${index} : ${values}`);
-
-  //   if (!canUpdate) {
-  //     return;
-  //   }
-
-  //   try {
-  //     range += index;
-
-  //     await this.spreadsheets.values.update(
-  //       {
-  //         auth: this.auth,
-  //         spreadsheetId: this._spreadsheetId,
-  //         range,
-  //         valueInputOption: "USER_ENTERED",
-  //         resource: {
-  //           values: [ values ],
-  //         },
-  //       });
-
-  //     return true;
-  //   } catch (e) {
-  //     await logError(this, `update (${desc})`, this._spreadsheetId + ' ' + range + ' ' + index, e);
-  //     return false;
-  //   }
-  // }
 }
