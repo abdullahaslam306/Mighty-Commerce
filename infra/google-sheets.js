@@ -56,31 +56,58 @@ module.exports = class GoogleSheets {
     }
   }
 
-  async update(range, index, values, desc) {
-    await log(this, `${canUpdate ? '' : 'bypassed'} update: ${range} ${index} : ${values}`);
+  async update(requests, desc) {
+    await log(this, `${canUpdate ? '' : 'bypassed'} batchUpdate: requets`);
 
     if (!canUpdate) {
       return;
     }
 
     try {
-      range += index;
 
-      await this.spreadsheets.values.update(
+      await this.spreadsheets.values.batchUpdate(
         {
           auth: this.auth,
           spreadsheetId: this._spreadsheetId,
-          range,
           valueInputOption: "USER_ENTERED",
           resource: {
-            values: [ values ],
+            data : requests
           },
+          includeValuesInResponse: boolean,
         });
-
       return true;
     } catch (e) {
-      await logError(this, `update (${desc})`, this._spreadsheetId + ' ' + range + ' ' + index, e);
+      await logError(this, `update (${desc})`, this._spreadsheetId + ' ' + 'batchUpdate' + ' ' , e);
       return false;
     }
   }
+
+
+  // async update(range, index, values, desc) {
+  //   await log(this, `${canUpdate ? '' : 'bypassed'} update: ${range} ${index} : ${values}`);
+
+  //   if (!canUpdate) {
+  //     return;
+  //   }
+
+  //   try {
+  //     range += index;
+
+  //     await this.spreadsheets.values.update(
+  //       {
+  //         auth: this.auth,
+  //         spreadsheetId: this._spreadsheetId,
+  //         range,
+  //         valueInputOption: "USER_ENTERED",
+  //         resource: {
+  //           values: [ values ],
+  //         },
+  //       });
+
+  //     return true;
+  //   } catch (e) {
+  //     await logError(this, `update (${desc})`, this._spreadsheetId + ' ' + range + ' ' + index, e);
+  //     return false;
+  //   }
+  // }
 }

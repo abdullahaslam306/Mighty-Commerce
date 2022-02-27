@@ -14,6 +14,7 @@ const qtyAndPrice = require('../../models/qty-and-price');
 
 module.exports = class QtyAndPriceGooglesheetsUpdater {
   sourceSheet = new GoogleSheets();
+ 
 
   async init(config) {
     this.sourceSheet.keyFile = getConfig(config, 'fileAuth');
@@ -38,7 +39,6 @@ module.exports = class QtyAndPriceGooglesheetsUpdater {
         })
         .sort({"lastUpdated": 1})
         .limit(1);
-
     if (!nextToUpdate.length) {
       return;
     } else {
@@ -55,39 +55,61 @@ module.exports = class QtyAndPriceGooglesheetsUpdater {
           quantity: { $first: '$quantity' },
       }}
     ])
-
     if (nextToUpdate.status != 'PENDING') {
-      nextToUpdate.processStatus = 'skipped-not-pending';
-    } else if (!source.length) {
+      nextToUpdate.processStatus = 'skipped-not-pending';}
+     else if (!source.length) {
       nextToUpdate.processStatus = 'no-source';
-    } else {
+    } 
+    else {
       let quantity = source[0].quantity,
           price = toDecimal(source[0].price) + toDecimal(source[0].shippingPrice);
-
+  
+     let requests = [];
       nextToUpdate.processStatus = 'initial';
 
-      if (
-        await this.sourceSheet.update(getConfig(config, 'rangeForQtyAndLastScan'), nextToUpdate.index, [
-          quantity, localDateTime()
-        ], 'update qty-and-last-scan')
-      ) {
-        nextToUpdate.processStatus += ' updated-qty-last-scan'
-      } else {
-        nextToUpdate.processStatus += ' error-update-qty-last-scan'
-      }
+      // batch update request here
 
-      if (
-        await this.sourceSheet.update(getConfig(config, 'rangeForPrice'), nextToUpdate.index, [
-          price
-        ], 'update price')
-      ) {
-        nextToUpdate.processStatus += ' updated-price'
-      } else {
-        nextToUpdate.processStatus += ' error-update-price'
+      // update qty
+      requests.push(
+        this.createUpdateRequests(
+          getConfig(config, 'rangeForQtyAndLastScan'),
+          nextToUpdate.index,
+          [
+        quantity,
+        localDateTime()
+      ]
+      ));
+      // update price
+      requests.push(
+        this.createUpdateRequests(
+          getConfig(config, 'rangeForPrice'),
+           nextToUpdate.index,
+           [ price ]
+           ));
+
+
+      let isUpdated = await this.sourceSheet.update(requests, 'Batch Update');
+      if(isUpdated) {
+        nextToUpdate.processStatus += ' updated-qty-last-scan';
+        nextToUpdate.processStatus += ' updated-price';
+      }
+      else {
+        nextToUpdate.processStatus += ' error-update-price';
+        nextToUpdate.processStatus += ' error-update-qty-last-scan';
       }
     }
 
     nextToUpdate.lastUpdated = new Date();
     await nextToUpdate.save();
   }
-}
+
+  // helper function
+
+  createUpdateRequests = (range, index, values) => { 
+    range += index;
+    return { 
+            range: range,
+            values: [ values ]
+          }
+        }
+      }
