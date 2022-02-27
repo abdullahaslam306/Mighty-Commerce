@@ -6,10 +6,8 @@ const {
   log,
   toDecimal,
   getConfig,
-  localDate,
   localDateTime,
 } = require('../../infra/utils');
-const qtyAndPrice = require('../../models/qty-and-price');
 
 
 module.exports = class QtyAndPriceGooglesheetsUpdater {
@@ -27,8 +25,8 @@ module.exports = class QtyAndPriceGooglesheetsUpdater {
     this.RepricerHub = RepricerHub(getConfig(config, 'sourceCollection'));
     
     const lastUpdatedSecs = getConfig(config, 'lastUpdatedSecs');
-
-    let nextToUpdate = 
+    let dbWrite = [];
+    let itemsToUpdate = 
       await this.QtyAndPrice
         .find({
           $or: [{
@@ -38,39 +36,39 @@ module.exports = class QtyAndPriceGooglesheetsUpdater {
           }]
         })
         .sort({"lastUpdated": 1})
-        .limit(1);
-    if (!nextToUpdate.length) {
+
+    if (!itemsToUpdate.length) {
       return;
     } else {
-      nextToUpdate = nextToUpdate[0];
-    }
+      let updateRequests = [];
+      itemsToUpdate.forEach(async nextToUpdate => {
 
-    const source = await this.RepricerHub.aggregate([
-      { $match: { "asin": nextToUpdate.asin } },
-      { $sort:{ "lastUpdate": - 1} },
-      { "$group" : {
-      _id:"$asin",
-          price: { $first: '$price' },
-          shipping: { $first: '$shipping' },
-          quantity: { $first: '$quantity' },
-      }}
-    ])
-    if (nextToUpdate.status != 'PENDING') {
-      nextToUpdate.processStatus = 'skipped-not-pending';}
-     else if (!source.length) {
-      nextToUpdate.processStatus = 'no-source';
-    } 
-    else {
-      let quantity = source[0].quantity,
-          price = toDecimal(source[0].price) + toDecimal(source[0].shippingPrice);
-  
-     let requests = [];
-      nextToUpdate.processStatus = 'initial';
+      const source = await this.RepricerHub.aggregate([
+        { $match: { "asin": nextToUpdate.asin } },
+        { $sort:{ "lastUpdate": - 1} },
+        { "$group" : {
+        _id:"$asin",
+            price: { $first: '$price' },
+            shipping: { $first: '$shipping' },
+            quantity: { $first: '$quantity' },
+        }}
+      ])
+
+      if (nextToUpdate.status != 'PENDING') {
+        nextToUpdate.processStatus = 'skipped-not-pending';
+      }
+      else if (!source.length) {
+        nextToUpdate.processStatus = 'no-source';
+      } 
+      else {
+        let quantity = source[0].quantity,
+        price = toDecimal(source[0].price) + toDecimal(source[0].shippingPrice);
+        nextToUpdate.processStatus = 'initial';
 
       // batch update request here
 
       // update qty
-      requests.push(
+      updateRequests.push(
         this.createUpdateRequests(
           getConfig(config, 'rangeForQtyAndLastScan'),
           nextToUpdate.index,
@@ -80,30 +78,23 @@ module.exports = class QtyAndPriceGooglesheetsUpdater {
       ]
       ));
       // update price
-      requests.push(
+      updateRequests.push(
         this.createUpdateRequests(
           getConfig(config, 'rangeForPrice'),
            nextToUpdate.index,
            [ price ]
            ));
+          }
+         nextToUpdate.lastUpdated = new Date();
+         dbWrite.push(this.createDBRequest(nextToUpdate));   
+      })
 
-
-      let isUpdated = await this.sourceSheet.update(requests, 'Batch Update');
-      if(isUpdated) {
-        nextToUpdate.processStatus += ' updated-qty-last-scan';
-        nextToUpdate.processStatus += ' updated-price';
-      }
-      else {
-        nextToUpdate.processStatus += ' error-update-price';
-        nextToUpdate.processStatus += ' error-update-qty-last-scan';
-      }
+      await this.sourceSheet.update(updateRequests, 'Batch Update');
     }
-
-    nextToUpdate.lastUpdated = new Date();
-    await nextToUpdate.save();
+    await this.QtyAndPrice.bulkWrite(dbWrite);
   }
 
-  // helper function
+  // helper functions
 
   createUpdateRequests = (range, index, values) => { 
     range += index;
@@ -112,4 +103,14 @@ module.exports = class QtyAndPriceGooglesheetsUpdater {
             values: [ values ]
           }
         }
+  createDBRequest = (currentItem) => {
+
+    return { 
+      updateOne: {
+        "filter": { "asin" : currentItem.asin, "index": currentItem.index },
+        "update": { $set : { "lastUpdated" : currentItem.lastUpdated, "processStatus" : currentItem.processStatus}}
       }
+    }
+
+  }
+}

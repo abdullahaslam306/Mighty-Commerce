@@ -73,7 +73,6 @@ module.exports = class GoogleSheets {
           resource: {
             data : requests
           },
-          includeValuesInResponse: boolean,
         });
       return true;
     } catch (e) {
