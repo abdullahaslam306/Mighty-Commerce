@@ -89,7 +89,7 @@ module.exports = class QtyAndPriceGooglesheetsUpdater {
          dbWrite.push(this.createDBRequest(nextToUpdate));   
       })
 
-      await this.sourceSheet.update(updateRequests, 'Batch Update');
+      await this.sourceSheet.bulkUpdate(updateRequests, 'Batch Update');
     }
     await this.QtyAndPrice.bulkWrite(dbWrite);
   }
