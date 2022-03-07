@@ -1,0 +1,332 @@
+[{
+  "profile": "tracking-numbers-googlesheets-reader",
+  "enabled": true,
+  "interval": 300,
+  "config": {
+    "file": "1qQJSkdVg6L4xAft9eAkgpnRPoRcQsMO6tBAaWjAvzLo",
+    "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
+    "range": "February 2022!X:Y",
+    "rangeForStatus": "February 2022!J:J",
+    "collection": "february"
+  },
+  "load": "track17/tracking-googlesheets-reader",
+  "__v": 0,
+  "status": "starting",
+  "lastRun": "2022-03-02T14:10:06.485Z"
+},
+
+{
+  "profile": "trackingnumbers-googlesheets-updater",
+  "enabled": true,
+  "interval": 5,
+  "config": {
+    "file": "1qQJSkdVg6L4xAft9eAkgpnRPoRcQsMO6tBAaWjAvzLo",
+    "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
+    "range": "February 2022!AD:AG",
+    "collection": "february"
+  },
+  "load": "track17/tracking-googlesheets-updater",
+  "__v": 0,
+  "status": "done",
+  "lastRun": "2022-03-02T14:34:39.605Z"
+},
+
+{
+  "profile": "trackingnumbers-registration",
+  "enabled": true,
+  "interval": 10800,
+  "config": {
+    "token": "69268B5C19D59286103F1F04E9761B58",
+    "collection": "february"
+  },
+  "load": "track17/tracking-registration",
+  "__v": 0,
+  "status": "starting",
+  "lastRun": "2022-02-28T16:30:08.146Z"
+},
+
+{
+  "profile": "trackingnumbers-status",
+  "enabled": true,
+  "interval": 28800,
+  "config": {
+    "token": "69268B5C19D59286103F1F04E9761B58",
+    "collection": "february"
+  },
+  "load": "track17/tracking-status",
+  "__v": 0,
+  "status": "done",
+  "lastRun": "2022-03-02T11:19:22.686Z"
+},
+
+{
+  "profile": "repricer-api",
+  "enabled": true,
+  "interval": 720,
+  "config": {
+    "userName": "oriyashragaelgali@gmail.com",
+    "password": "Ori9RnV5fAzCRf!",
+    "dir": "temp",
+    "fileNameInput": "repricer-input.csv",
+    "fileNameOutput": "repricer-output.csv",
+    "collection": "prod",
+    "canPostFile": true
+  },
+  "load": "repricer/repricer-api",
+  "__v": 0,
+  "status": "starting",
+  "lastRun": "2022-03-02T12:17:28.517Z"
+},
+
+{
+  "profile": "asin-source-reader",
+  "enabled": true,
+  "interval": 21600,
+  "config": {
+    "file": "1O2b-P4z3OBP8AxETgmoP7fFNhqqw1jiUPeY07Pfc42c",
+    "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
+    "range": "Updated ITEM LIST!B:D",
+    "collection": "prod"
+  },
+  "load": "repricer/asin-source-reader",
+  "__v": 0,
+  "status": "done",
+  "lastRun": "2022-03-02T12:10:09.322Z"
+},
+
+{
+  "profile": "repricer-scan",
+  "enabled": true,
+  "interval": 2,
+  "config": {
+    "collection": "prod",
+    "lastScanSecs": 30,
+    "lastSeenHours": 10
+  },
+  "load": "repricer/repricer-scan",
+  "__v": 0,
+  "status": "starting",
+  "lastRun": "2022-03-02T14:34:39.566Z"
+},
+
+{
+  "profile": "repricerhub-getlisting Guy Shiffer",
+  "enabled": true,
+  "interval": 300,
+  "config": {
+    "apiKey": "93dc167a-b5a7-408c-a5d6-75443ec8ab75",
+    "collection": "prod"
+  },
+  "load": "repricer-hub/repricer-hub-getlisting",
+  "status": "done",
+  "lastRun": "2022-03-02T14:30:15.841Z"
+},
+
+{
+  "profile": "repricerhub-getlisting Yuval Bryt",
+  "enabled": true,
+  "interval": 300,
+  "config": {
+    "apiKey": "92c30d6b-e963-4971-875a-28906de41a49",
+    "collection": "prod"
+  },
+  "load": "repricer-hub/repricer-hub-getlisting",
+  "status": "done",
+  "lastRun": "2022-03-02T14:30:18.113Z"
+},
+
+{
+  "profile": "repricerhub-getlisting Milka Biton",
+  "enabled": true,
+  "interval": 300,
+  "config": {
+    "apiKey": "61711dc0-57ad-4cdd-b630-f77188c655a5",
+    "collection": "prod"
+  },
+  "load": "repricer-hub/repricer-hub-getlisting",
+  "status": "done",
+  "lastRun": "2022-03-02T14:30:58.327Z"
+},
+
+{
+  "profile": "repricerhub-getlisting Moshe Jakob Wolf",
+  "enabled": true,
+  "interval": 300,
+  "config": {
+    "apiKey": "75831393-7247-4e37-917c-e0db58b7e83f",
+    "collection": "prod"
+  },
+  "load": "repricer-hub/repricer-hub-getlisting",
+  "status": "starting",
+  "lastRun": "2022-03-02T14:26:13.570Z"
+},
+
+{
+  "profile": "repricerhub-getlisting Roee Yair",
+  "enabled": true,
+  "interval": 300,
+  "config": {
+    "apiKey": "993d6569-d147-4414-a8c2-60754cdcf133",
+    "collection": "prod"
+  },
+  "load": "repricer-hub/repricer-hub-getlisting",
+  "status": "done",
+  "lastRun": "2022-03-02T14:32:50.999Z"
+},
+
+{
+  "profile": "repricerhub-getlisting Shaked Ostrovsky",
+  "enabled": true,
+  "interval": 300,
+  "config": {
+    "apiKey": "7bb3d3a7-a77f-4e59-a637-673ee180da82",
+    "collection": "prod"
+  },
+  "load": "repricer-hub/repricer-hub-getlisting",
+  "status": "done",
+  "lastRun": "2022-03-02T14:30:49.325Z"
+},
+
+{
+  "profile": "repricerhub-getlisting Idan Beniri",
+  "enabled": true,
+  "interval": 300,
+  "config": {
+    "apiKey": "53c5d11b-8614-42cc-8d66-2a519d129887",
+    "collection": "prod"
+  },
+  "load": "repricer-hub/repricer-hub-getlisting",
+  "status": "done",
+  "lastRun": "2022-03-02T14:30:18.407Z"
+},
+
+{
+  "profile": "repricerhub-getlisting Ali Abu Ramila",
+  "enabled": true,
+  "interval": 300,
+  "config": {
+    "apiKey": "40cc6ba7-accf-4a8a-a340-6226abd66cf5",
+    "collection": "prod"
+  },
+  "load": "repricer-hub/repricer-hub-getlisting",
+  "status": "done",
+  "lastRun": "2022-03-02T14:30:14.834Z"
+},
+
+{
+  "profile": "repricerhub-getlisting Michal Peled",
+  "enabled": true,
+  "interval": 300,
+  "config": {
+    "apiKey": "40782d6a-c807-4d7a-a65d-bc3828a7e588",
+    "collection": "prod"
+  },
+  "load": "repricer-hub/repricer-hub-getlisting",
+  "status": "done",
+  "lastRun": "2022-03-02T14:31:23.042Z"
+},
+
+{
+  "profile": "repricerhub-getlisting Daniel Elbaz",
+  "enabled": true,
+  "interval": 300,
+  "config": {
+    "apiKey": "7ddca364-e078-4acf-8f32-d705c8616501",
+    "collection": "prod"
+  },
+  "load": "repricer-hub/repricer-hub-getlisting",
+  "status": "done",
+  "lastRun": "2022-03-02T14:32:53.934Z"
+},
+
+{
+  "profile": "repricerhub-getlisting Sergio Daniel Ostrovsky",
+  "enabled": true,
+  "interval": 300,
+  "config": {
+    "apiKey": "3d84da69-9388-4070-ab94-685f1ae7c6f2",
+    "collection": "prod"
+  },
+  "load": "repricer-hub/repricer-hub-getlisting",
+  "status": "done",
+  "lastRun": "2022-03-02T14:32:51.241Z"
+},
+
+{
+  "profile": "repricerhub-getlisting Adi Yaish",
+  "enabled": true,
+  "interval": 300,
+  "config": {
+    "apiKey": "2c472014-dd2c-43a4-bb2e-836e033bc096",
+    "collection": "prod"
+  },
+  "load": "repricer-hub/repricer-hub-getlisting",
+  "lastRun": "2022-03-02T14:33:02.679Z",
+  "status": "done"
+},
+
+{
+  "profile": "price-and-qty-tracking-numbers-googlesheets-reader",
+  "enabled": true,
+  "interval": 300,
+  "config": {
+    "file": "1_KFXkec7Q0iCPsUw_tAnRPkQASuyi-htpgvsu5SiqLI",
+    "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
+    "range": "March 2022!I:J",
+    "collection": "prod-march"
+  },
+  "load": "qty-and-price/qty-and-price-googlesheets-reader",
+  "status": "done",
+  "lastRun": "2022-03-02T14:34:42.376Z"
+},
+
+{
+  "profile": "price-and-qty-tracking-numbers-googlesheets-reader",
+  "enabled": true,
+  "interval": 300,
+  "config": {
+    "file": "1qQJSkdVg6L4xAft9eAkgpnRPoRcQsMO6tBAaWjAvzLo",
+    "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
+    "range": "February 2022!I:J",
+    "collection": "prod-february"
+  },
+  "load": "qty-and-price/qty-and-price-googlesheets-reader",
+  "status": "starting",
+  "lastRun": "2022-03-02T14:26:53.042Z"
+},
+
+{
+  "profile": "price-and-qty-tracking-numbers-googlesheets-updater",
+  "enabled": true,
+  "interval": 300,
+  "config": {
+    "file": "1qQJSkdVg6L4xAft9eAkgpnRPoRcQsMO6tBAaWjAvzLo",
+    "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
+    "rangeForQtyAndLastScan": "February 2022!F:G",
+    "rangeForPrice": "February 2022!M:M",
+    "collection": "prod-february",
+    "sourceCollection": "prod",
+    "lastUpdatedSecs": 300
+  },
+  "load": "qty-and-price/qty-and-price-googlesheets-updater",
+  "status": "starting",
+  "lastRun": "2022-03-02T14:34:43.381Z"
+},
+{
+  "profile": "price-and-qty-tracking-numbers-googlesheets-updater",
+  "enabled": true,
+  "interval": 300,
+  "config": {
+    "file": "1_KFXkec7Q0iCPsUw_tAnRPkQASuyi-htpgvsu5SiqLI",
+    "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
+    "rangeForQtyAndLastScan": "March 2022!F:G",
+    "rangeForPrice": "March 2022!M:M",
+    "collection": "prod-march",
+    "sourceCollection": "prod",
+    "lastUpdatedSecs": 300
+  },
+  "load": "qty-and-price/qty-and-price-googlesheets-updater",
+  "status": "starting",
+  "lastRun": "2022-03-02T14:34:43.381Z"
+}
+]
