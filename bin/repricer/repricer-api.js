@@ -13,8 +13,8 @@ const DEV_LIMIT = 0;
 const RepricerScanModel = require('../../models/repricer-scan');
 const RepricerStat = require('../../models/repricer-stat');
 const RepricerNameProfit = require('../../models/repricer-repricer_name-profit');
+const RepricerHub = require('../../models/repricer-hub')
 
-const { RepricerScanEnum } = require('../../models/constants');
 
 const
     tax_factor = 0.09,
@@ -44,6 +44,7 @@ module.exports = class RepricerAPIBOT {
         this.RepricerScanModel = RepricerScanModel(getConfig(config, 'collection'));
         this.RepricerStat = RepricerStat(getConfig(config, 'collection'));
         this.RepricerNameProfit = RepricerNameProfit(getConfig(config, 'collection'));
+        this.RepricerHub = RepricerHub(getConfig(config, 'collection'))
 
         this.repricerAPI = new RepricerAPI();
         this.repricerAPI.init({ 
@@ -56,11 +57,11 @@ module.exports = class RepricerAPIBOT {
   
     async run(config, param, state) {
         this.canPostFile = getConfig(config, 'canPostFile', true);
-
+        console.log('--------------Here in repricer ----------')
         if (this.canPostFile) {
-            await log(this, 'file post enabled')
+            await log(this, 'file post enabled', this.canPostFile)
         } else {
-            await log(this, 'file post disabled')
+            await log(this, 'file post disabled', this.canPostFile)
         }
 
         const useTestInputFile = getConfig(config, 'useFileNameInput', true);
@@ -123,7 +124,7 @@ module.exports = class RepricerAPIBOT {
         await CSV.write(this.outputFile, headers, values);
 
         await log(this, 'written CSV file: ' + this.outputFile);
-
+    // for test change it to
         if (!this.testInputFile && this.canPostFile == true) {
             await this.repricerAPI.postFile(this.outputFile);
             await log(this, 'uploaded file.');
@@ -138,6 +139,9 @@ module.exports = class RepricerAPIBOT {
         let counter = 0;
 
         for await (var repricerDoc of repricerDocs) {
+             if (devLimit(DEV_LIMIT)) {
+                break;
+            }
             counter += 1;
 
             if (counter % COUNT_INTERVAL == 0) {
@@ -179,27 +183,27 @@ module.exports = class RepricerAPIBOT {
 
     calcPricesPercentage(unit_cost_total_after_fees, profit_percentage = 0.15) {
         return {
-            price_max: unit_cost_total_after_fees * 8,
+            price_max: unit_cost_total_after_fees * 3,
             price_min: unit_cost_total_after_fees / (amazon_fee - profit_percentage)
         }        
     }
 
     calcPricesFixedMargin(unit_cost_total_after_fees, profit_percentage_usd = 0) {
         return {
-            price_max: unit_cost_total_after_fees * 8,
+            price_max: unit_cost_total_after_fees * 3,
             price_min: (unit_cost_total_after_fees + profit_percentage_usd) / amazon_fee
         }        
     }
 
     async updateRepricer(repricerDoc, updatedPrice) {
         if (updatedPrice) {
+
             repricerDoc.unit_cost = updatedPrice;
 
             const repricerNameProfitDoc = 
                 this.repricerNameProfitDocs.find(
                     doc => doc.repricer_name == repricerDoc.repricer_name);
-            
-            if (!repricerNameProfitDoc || repricerNameProfitDoc.process) {
+            if (repricerNameProfitDoc != undefined && repricerNameProfitDoc.process == true) {
                 const unit_cost_total_after_fees = this.calcPricesBase(updatedPrice);
 
                 const { 
@@ -209,9 +213,8 @@ module.exports = class RepricerAPIBOT {
 
                 repricerDoc.price_max = price_max;
                 repricerDoc.price_min = price_min;
-            }
         }
-
+        }
         repricerDoc.price_max = roundHalf(repricerDoc.price_max.toFixed(2));
         repricerDoc.price_min = roundHalf(repricerDoc.price_min.toFixed(2));
 
@@ -220,24 +223,6 @@ module.exports = class RepricerAPIBOT {
 
     async updateFromScanList() {
         const repricerDocs = await this.Repricer.find({});
-        const repricerStat = new this.RepricerStat();
-
-        repricerStat.scanTime = new Date();
-        repricerStat.total = 0;
-        repricerStat.newState = 0;
-        repricerStat.fetchedState = 0;
-        repricerStat.errorState = 0;
-        repricerStat.bypassedState = 0;
-        repricerStat.otherState = 0;
-        repricerStat.modified = 0;
-        repricerStat.zeroPrice = 0;
-        repricerStat.hasVariations = 0;
-        repricerStat.hasSourceVariations = 0;
-        repricerStat.scanMissing = 0;
-        repricerStat.fileName = this.outputFileShort;
-
-        repricerStat.nanPrice = 0;
-        repricerStat.debugSkipped = 0;
 
         let counter = 0;
 
@@ -248,69 +233,38 @@ module.exports = class RepricerAPIBOT {
                 out(counter == COUNT_INTERVAL ? `${counter}` : `,${counter}`);
             }
 
-            repricerStat.total += 1;
+            
+            const agregateArray = await this.RepricerHub.aggregate([
+        { $match: { "asin": repricerDoc.asin } },
+        { $sort:{ "lastUpdate": - 1} },
+        { "$group" : {
+        _id:"$asin",
+            price: { $first: '$price' },
+            shipping: { $first: '$shipping' },
+            quantity: { $first: '$quantity' },
+        }}
+      ])
 
-            const priceScanDoc = await this.RepricerScanModel.findOne({ asin: repricerDoc.asin});
+      const priceScanDoc =  agregateArray[0];
 
             if (!priceScanDoc) {
-                repricerStat.scanMissing += 1;
                 await this.updateRepricer(repricerDoc)
                 continue;
             }
 
-            if (priceScanDoc.hasSourceVariations) {
-                repricerStat.hasSourceVariations += 1;
-                await this.updateRepricer(repricerDoc)
-                continue;
-            }
+           
 
-            switch (priceScanDoc.status) {
-                case RepricerScanEnum.NEW:
-                    repricerStat.newState += 1;
-                    break;
-                case RepricerScanEnum.FETCHED:
-                    repricerStat.fetchedState += 1;
-                    break;
-                case RepricerScanEnum.ERROR:
-                    repricerStat.errorState += 1;
-                    break;
-                case RepricerScanEnum.BYPASSED:
-                    repricerStat.bypassedState += 1;
-                    break;
-                default:
-                    repricerStat.otherState += 1;
-                    break;                    
-            }
+            const updatedPrice = toDecimal(priceScanDoc.price) + toDecimal(priceScanDoc.shipping);
 
-            if (priceScanDoc.hasVariations) {
-                repricerStat.hasVariations += 1;
-            } else if (toDecimal(priceScanDoc.price) + toDecimal(priceScanDoc.shippingPrice) == 0) {
-                repricerStat.zeroPrice += 1;
-            }
-
-            const updatedPrice = 
-                priceScanDoc.hasVariations ? 0 :
-                    toDecimal(priceScanDoc.price) + toDecimal(priceScanDoc.shippingPrice);
-
-            // if (isNaN(unit_cost)) {
-            //     repricerStat.nanPrice += 1;
-            // }
 
             if (!updatedPrice) {
                 await this.updateRepricer(repricerDoc);
-                repricerStat.debugSkipped += 1;
                 continue;
             }
 
             await this.updateRepricer(repricerDoc, updatedPrice);
-
-            repricerStat.modified += 1;
         }
 
         logLn(" DONE updateFromScanList");
-
-        //await log(this, repricerStat);
-
-        await repricerStat.save();
     }
 }
