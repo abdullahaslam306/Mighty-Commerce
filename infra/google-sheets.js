@@ -64,7 +64,7 @@ module.exports = class GoogleSheets {
     }
 
     try {
-
+	console.log(requests.length)
       await this.spreadsheets.values.batchUpdate(
         {
           auth: this.auth,

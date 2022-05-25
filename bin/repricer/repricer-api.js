@@ -17,7 +17,7 @@ const RepricerHub = require('../../models/repricer-hub')
 
 
 const
-    tax_factor = 0.09,
+    tax_factor = 0.06,
     discount_factor = 0.75,
     p_fee_factor = 0.03,
     g_fee_factor = 0.03,
@@ -126,8 +126,9 @@ module.exports = class RepricerAPIBOT {
         await log(this, 'written CSV file: ' + this.outputFile);
     // for test change it to
         if (!this.testInputFile && this.canPostFile == true) {
-            await this.repricerAPI.postFile(this.outputFile);
-            await log(this, 'uploaded file.');
+            const a = await this.repricerAPI.postFile(this.outputFile);           
+	console.log(a);
+	await log(this, 'uploaded file.');
         } else {
             await log(this, 'file post disabled');
         }

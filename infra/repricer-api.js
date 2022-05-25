@@ -15,7 +15,9 @@ const {
 module.exports = class Repricer {
 
   init(config) {
-    const encodedBase64Token = 
+	this.userName = config.userName;
+	this.password = config.password;    
+const encodedBase64Token = 
       Buffer
         .from(`${config.userName}:${config.password}`)
         .toString('base64');
@@ -53,27 +55,14 @@ module.exports = class Repricer {
     // return new Promise(async (resolve, reject) => {
     //   try {
       await log(this, 'start post file')
-
-        const formData = new FormData();
-
-        const file = fs.readFileSync(fileName);
-        formData.append('file', file, 'inventory.csv');
-
-        return axios({
-          url,
-          responseType: 'stream',
-          method: 'post',
-          headers: {
-              Authorization: this.authorization,
-              ...formData.getHeaders(),
-             // 'content-length': contentLength
-          },
-          data: formData
-        });
-        
+	 const { execSync } = require('child_process');   
+  const stdout = execSync(`curl --user '${this.userName}:${this.password}' --request POST --data-binary @${fileName} ${url}`);
+	console.log(stdout);
+     execSync(`find /var/www/info.net/html/ -name '*.csv' -type f -mtime +7 -delete`);    
     //   } catch (e) {
     //     reject(`repricer post file: ${e.message}`);
     //   }
     // })
   }
 }
+

@@ -3,16 +3,13 @@
   "enabled": true,
   "interval": 300,
   "config": {
-    "file": "1qQJSkdVg6L4xAft9eAkgpnRPoRcQsMO6tBAaWjAvzLo",
+    "file": "1FLSfLrIOclYvm5BiC6WbyoJoYIXYo4QeSHBi6xMZSj8",
     "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
-    "range": "February 2022!X:Y",
-    "rangeForStatus": "February 2022!J:J",
-    "collection": "february"
+    "range": "May 2022!X:Y",
+    "rangeForStatus": "May 2022!J:J",
+    "collection": "prod-may"
   },
-  "load": "track17/tracking-googlesheets-reader",
-  "__v": 0,
-  "status": "starting",
-  "lastRun": "2022-03-02T14:10:06.485Z"
+  "load": "track17/tracking-googlesheets-reader"
 },
 
 {
@@ -20,29 +17,48 @@
   "enabled": true,
   "interval": 5,
   "config": {
-    "file": "1qQJSkdVg6L4xAft9eAkgpnRPoRcQsMO6tBAaWjAvzLo",
+    "file": "1FLSfLrIOclYvm5BiC6WbyoJoYIXYo4QeSHBi6xMZSj8",
     "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
-    "range": "February 2022!AD:AG",
-    "collection": "february"
+    "range": "May 2022!AE:AH",
+    "collection": "prod-may"
   },
-  "load": "track17/tracking-googlesheets-updater",
-  "__v": 0,
-  "status": "done",
-  "lastRun": "2022-03-02T14:34:39.605Z"
+  "load": "track17/tracking-googlesheets-updater"
+},
+{
+  "profile": "tracking-numbers-googlesheets-reader",
+  "enabled": true,
+  "interval": 300,
+  "config": {
+    "file": "1fRZgwRgfIGHABgrcKBAaVlUV_TzRTky8AtyIFZxtf-Q",
+    "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
+    "range": "April 2022!X:Y",
+    "rangeForStatus": "April 2022!J:J",
+    "collection": "prod-april"
+  },
+  "load": "track17/tracking-googlesheets-reader"
 },
 
+{
+  "profile": "trackingnumbers-googlesheets-updater",
+  "enabled": true,
+  "interval": 5,
+  "config": {
+    "file": "1fRZgwRgfIGHABgrcKBAaVlUV_TzRTky8AtyIFZxtf-Q",
+    "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
+    "range": "April 2022!AE:AH",
+    "collection": "prod-april"
+  },
+  "load": "track17/tracking-googlesheets-updater"
+},
 {
   "profile": "trackingnumbers-registration",
   "enabled": true,
   "interval": 10800,
   "config": {
     "token": "69268B5C19D59286103F1F04E9761B58",
-    "collection": "february"
+    "collection": "prod-may"
   },
-  "load": "track17/tracking-registration",
-  "__v": 0,
-  "status": "starting",
-  "lastRun": "2022-02-28T16:30:08.146Z"
+  "load": "track17/tracking-registration"
 },
 
 {
@@ -51,12 +67,9 @@
   "interval": 28800,
   "config": {
     "token": "69268B5C19D59286103F1F04E9761B58",
-    "collection": "february"
+    "collection": "prod-may"
   },
-  "load": "track17/tracking-status",
-  "__v": 0,
-  "status": "done",
-  "lastRun": "2022-03-02T11:19:22.686Z"
+  "load": "track17/tracking-status"
 },
 
 {
@@ -65,8 +78,8 @@
   "interval": 720,
   "config": {
     "userName": "oriyashragaelgali@gmail.com",
-    "password": "Ori9RnV5fAzCRf!",
-    "dir": "temp",
+    "password": "$nEetrjAUKAA8!@",
+    "dir": "/var/www/info.net/html",
     "fileNameInput": "repricer-input.csv",
     "fileNameOutput": "repricer-output.csv",
     "collection": "prod",
@@ -270,10 +283,10 @@
   "enabled": true,
   "interval": 300,
   "config": {
-    "file": "1_KFXkec7Q0iCPsUw_tAnRPkQASuyi-htpgvsu5SiqLI",
+    "file": "1FLSfLrIOclYvm5BiC6WbyoJoYIXYo4QeSHBi6xMZSj8",
     "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
-    "range": "March 2022!I:J",
-    "collection": "prod-march"
+    "range": "May 2022!I:J",
+    "collection": "prod-may"
   },
   "load": "qty-and-price/qty-and-price-googlesheets-reader",
   "status": "done",
@@ -285,10 +298,10 @@
   "enabled": true,
   "interval": 300,
   "config": {
-    "file": "1qQJSkdVg6L4xAft9eAkgpnRPoRcQsMO6tBAaWjAvzLo",
+    "file": "1fRZgwRgfIGHABgrcKBAaVlUV_TzRTky8AtyIFZxtf-Q",
     "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
-    "range": "February 2022!I:J",
-    "collection": "prod-february"
+    "range": "April 2022!I:J",
+    "collection": "prod-april"
   },
   "load": "qty-and-price/qty-and-price-googlesheets-reader",
   "status": "starting",
@@ -300,11 +313,11 @@
   "enabled": true,
   "interval": 300,
   "config": {
-    "file": "1qQJSkdVg6L4xAft9eAkgpnRPoRcQsMO6tBAaWjAvzLo",
+    "file": "1fRZgwRgfIGHABgrcKBAaVlUV_TzRTky8AtyIFZxtf-Q",
     "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
-    "rangeForQtyAndLastScan": "February 2022!F:G",
-    "rangeForPrice": "February 2022!M:M",
-    "collection": "prod-february",
+    "rangeForQtyAndLastScan": "April 2022!F:G",
+    "rangeForPrice": "April 2022!M:M",
+    "collection": "prod-april",
     "sourceCollection": "prod",
     "lastUpdatedSecs": 300
   },
@@ -317,16 +330,100 @@
   "enabled": true,
   "interval": 300,
   "config": {
-    "file": "1_KFXkec7Q0iCPsUw_tAnRPkQASuyi-htpgvsu5SiqLI",
+    "file": "1FLSfLrIOclYvm5BiC6WbyoJoYIXYo4QeSHBi6xMZSj8",
     "fileAuth": "./data/oauthtest-307815-0815a2a3d785.json",
-    "rangeForQtyAndLastScan": "March 2022!F:G",
-    "rangeForPrice": "March 2022!M:M",
-    "collection": "prod-march",
+    "rangeForQtyAndLastScan": "May 2022!F:G",
+    "rangeForPrice": "May 2022!M:M",
+    "collection": "prod-may",
     "sourceCollection": "prod",
     "lastUpdatedSecs": 300
   },
   "load": "qty-and-price/qty-and-price-googlesheets-updater",
   "status": "starting",
   "lastRun": "2022-03-02T14:34:43.381Z"
+},
+{
+  "profile": "repricerhub-getlisting Adi Yaish",
+  "enabled": true,
+  "interval": 300,
+  "config": {
+    "apiKey": "2c472014-dd2c-43a4-bb2e-836e033bc096",
+    "collection": "prod"
+  },
+  "load": "repricer-hub/repricer-hub-getlisting",
+  "status": "done",
+  "lastRun": "2022-03-02T14:30:15.841Z"
+},
+{
+  "profile": "repricerhub-getlisting Ilan Yaish",
+  "enabled": true,
+  "interval": 300,
+  "config": {
+    "apiKey": "90c06e38-decb-4a9b-b9ed-02bc578017c2",
+    "collection": "prod"
+  },
+  "load": "repricer-hub/repricer-hub-getlisting",
+  "status": "done",
+  "lastRun": "2022-03-02T14:30:15.841Z"
+},
+{
+  "profile": "repricerhub-getlisting SHADI AZZAM",
+  "enabled": true,
+  "interval": 300,
+  "config": {
+    "apiKey": "3f60d510-ebd7-49e9-8244-22d615b9af24",
+    "collection": "prod"
+  },
+  "load": "repricer-hub/repricer-hub-getlisting",
+  "status": "done",
+  "lastRun": "2022-03-02T14:30:15.841Z"
+},
+{
+  "profile": "repricerhub-getlisting Arkadi Fruman",
+  "enabled": true,
+  "interval": 300,
+  "config": {
+    "apiKey": "798d60aa-d7db-4c35-aafd-34c8eef3a2e9",
+    "collection": "prod"
+  },
+  "load": "repricer-hub/repricer-hub-getlisting",
+  "status": "done",
+  "lastRun": "2022-03-02T14:30:15.841Z"
+},
+{
+  "profile": "repricerhub-getlisting Shira Leor Kamin",
+  "enabled": true,
+  "interval": 300,
+  "config": {
+    "apiKey": "022f3a3e-559e-4269-abb0-8bf5ce37cded",
+    "collection": "prod"
+  },
+  "load": "repricer-hub/repricer-hub-getlisting",
+  "status": "done",
+  "lastRun": "2022-03-02T14:30:15.841Z"
+},
+{
+  "profile": "repricerhub-getlisting Shlomo Algressi",
+  "enabled": true,
+  "interval": 300,
+  "config": {
+    "apiKey": "7632ef19-1717-4884-9847-5f76adaac94d",
+    "collection": "prod"
+  },
+  "load": "repricer-hub/repricer-hub-getlisting",
+  "status": "done",
+  "lastRun": "2022-03-02T14:30:15.841Z"
+},
+{
+  "profile": "repricerhub-getlisting Moshe Shkury",
+  "enabled": true,
+  "interval": 300,
+  "config": {
+    "apiKey": "f21b481d-ab79-4d89-8655-2b4ee749a3d1",
+    "collection": "prod"
+  },
+  "load": "repricer-hub/repricer-hub-getlisting",
+  "status": "done",
+  "lastRun": "2022-03-02T14:30:15.841Z"
 }
 ]

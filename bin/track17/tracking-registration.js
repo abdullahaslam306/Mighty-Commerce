@@ -123,6 +123,7 @@ module.exports = class TrackingRegistration {
 
       for await (var item of result.rejected) {
         try {
+console.log(item.error)
           await this.TrackingNumber1.updateOne({ number: item.number }, { registrationStatus: 'register-rejected', registrationError: item.error });
         } catch (e) {
           console.error(e);
@@ -131,6 +132,7 @@ module.exports = class TrackingRegistration {
 
       for await (var item of result.errors) {
         try {
+console.log(item.error)
           await this.TrackingNumber1.updateOne({ number: item.number }, { registrationStatus: 'register-error', registrationError: item.error });
         } catch (e) {
           console.error(e);
